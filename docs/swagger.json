@@ -1,0 +1,348 @@
+{
+    "components": {
+        "schemas": {}
+    },
+    "info": {
+        "title": "Auth Service API",
+        "version": "1.0.0",
+        "description": "Generated with `routing-controllers-openapi`"
+    },
+    "openapi": "3.0.0",
+    "paths": {
+        "/gateway/signup": {
+            "post": {
+                "operationId": "AuthController.signup",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SignUpRequest"
+                            }
+                        }
+                    },
+                    "description": "SignUpRequest",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonStatusResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Create a new user",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/verify-email": {
+            "put": {
+                "operationId": "AuthController.verifyEmail",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VerifyUserRequest"
+                            }
+                        }
+                    },
+                    "description": "VerifyUserRequest",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonStatusResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "verify user email",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/login": {
+            "post": {
+                "operationId": "AuthController.login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    },
+                    "description": "LoginRequest",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthLoginResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Login user",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/reset-password": {
+            "get": {
+                "operationId": "AuthController.resetPassword",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonStatusResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Reset user password",
+                "tags": [
+                    "Auth"
+                ]
+            },
+            "post": {
+                "operationId": "AuthController.verifyResetPassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResetPasswordVerifyRequest"
+                            }
+                        }
+                    },
+                    "description": "ResetPasswordVerifyRequest",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonStatusResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Verify reset password",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/currentUser": {
+            "get": {
+                "operationId": "AuthController.getCurrentUser",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "authorization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CurrentUserResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Get user info by access token",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/token/refresh": {
+            "put": {
+                "operationId": "AuthController.putAccessToken",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PutUserAccessToken"
+                            }
+                        }
+                    },
+                    "description": "PutUserAccessToken",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthAccessRefreshTokenResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Get Access Token by refresh token",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/logout": {
+            "get": {
+                "operationId": "AuthController.logoutUser",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "authorization",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonStatusResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Logout user",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/accessToken": {
+            "post": {
+                "operationId": "AuthController.userOrgToken",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PostUserOrgAccessToken"
+                            }
+                        }
+                    },
+                    "description": "PostUserOrgAccessToken",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthLoginResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "Get user Org related acccess token",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        },
+        "/gateway/update-password": {
+            "put": {
+                "operationId": "AuthController.updatePassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/updatePasswordRequest"
+                            }
+                        }
+                    },
+                    "description": "updatePasswordRequest",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CommonStatusResponse"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "summary": "update password",
+                "tags": [
+                    "Auth"
+                ]
+            }
+        }
+    }
+}
